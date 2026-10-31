@@ -1,0 +1,80 @@
+{
+  "environments": [
+    {
+      "id": "deep_space_transit",
+      "name": "Deep-space transit (Mars cruise-like)",
+      "description": "Unprotected interplanetary transit during solar minimum; primary GCR flux.",
+      "dose_rate_mgy_day": 0.48,
+      "dose_rate_msv_day": 1.84,
+      "source": "Zeitlin et al. (2013) Science 340, 1080 (MSL RAD cruise measurements)",
+      "verified": true,
+      "traversal_note": "A given cell nucleus is traversed by a proton every few days and by an HZE ion every few months."
+    },
+    {
+      "id": "mars_surface",
+      "name": "Mars-like surface",
+      "description": "Planetary body shadow blocks 2pi steradians; thin CO2 column provides minimal shielding.",
+      "dose_rate_mgy_day": 0.21,
+      "dose_rate_msv_day": 0.64,
+      "source": "Hassler et al. (2014) Science 343 (MSL RAD surface measurements)",
+      "verified": true,
+      "traversal_note": "Secondary albedo neutrons generated in regolith contribute ~15% of surface dose equivalent."
+    },
+    {
+      "id": "iss_leo",
+      "name": "Low Earth orbit (ISS-like)",
+      "description": "Altitude ~400 km, 51.6° inclination; protected by Earth's geomagnetic dipole field.",
+      "dose_rate_mgy_day": 0.28,
+      "dose_rate_msv_day": 0.50,
+      "source": "UNSCEAR (2008) / NASA Human Research Program Dosimetry records",
+      "verified": true,
+      "traversal_note": "Passes through South Atlantic Anomaly (SAA) trapped proton belt several times daily."
+    },
+    {
+      "id": "solar_particle_event",
+      "name": "Large solar particle event (hypothetical peak)",
+      "description": "Coronal mass ejection proton shock front arriving at 1 AU; intense acute flux.",
+      "dose_rate_mgy_day": 25.0,
+      "dose_rate_msv_day": 50.0,
+      "source": "King (1974) / August 1972 SPE proxy (unshielded interplanetary model)",
+      "verified": true,
+      "traversal_note": "Immediate storm shelter required to prevent acute radiation syndrome (ARS) prodrome."
+    },
+    {
+      "id": "custom",
+      "name": "Custom Configuration",
+      "description": "User-defined exploration parameters.",
+      "dose_rate_mgy_day": 0.50,
+      "dose_rate_msv_day": 1.50,
+      "source": "User specified",
+      "verified": false,
+      "traversal_note": "Unverified custom parameters."
+    }
+  ],
+  "shielding": [
+    {
+      "id": "none",
+      "name": "No Shielding (Unshielded free space)",
+      "transmission": 1.0,
+      "notes": "Direct incident flux with zero structural attenuation."
+    },
+    {
+      "id": "light",
+      "name": "Light Shielding (~2 g/cm² aluminum / EVA suit)",
+      "transmission": 0.90,
+      "notes": "Stops soft solar protons; negligible reduction for high-energy galactic cosmic rays."
+    },
+    {
+      "id": "moderate",
+      "name": "Moderate Shielding (~15 g/cm² storm shelter / regolith)",
+      "transmission": 0.70,
+      "notes": "Substantial attenuation of solar particle events; secondary neutron scatter produced."
+    },
+    {
+      "id": "heavy",
+      "name": "Heavy Shielding (~45 g/cm² water-wall / lava tube)",
+      "transmission": 0.50,
+      "notes": "Hydrogen-rich material absorbing primary ions; heavy structural mass overhead."
+    }
+  ]
+}

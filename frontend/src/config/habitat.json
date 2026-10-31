@@ -1,0 +1,41 @@
+{
+  "consumables_per_person_day_kg": {
+    "oxygen": 0.84,
+    "drinking_food_water": 2.50,
+    "hygiene_water": 25.0,
+    "dry_food": 0.62,
+    "co2_production": 1.00
+  },
+  "recovery_efficiencies": {
+    "water_recovery_pct": 98.0,
+    "oxygen_recovery_pct": 85.0
+  },
+  "source": "NASA Baseline Values and Assumptions Document (BVAD, NASA/TP-2015-218570)",
+  "subsystem_checklist": [
+    {
+      "name": "Radiation Shielding Envelope",
+      "required": "Minimum 20 g/cm² hydrogenous mass or regolith overburden against GCR HZE flux",
+      "status": "Critical"
+    },
+    {
+      "name": "Atmospheric Pressure & Composition",
+      "required": "101.3 kPa (or 70.3 kPa 30% O2) with N2 buffer gas to prevent hyperoxic pulmonary atelectasis",
+      "status": "Critical"
+    },
+    {
+      "name": "Closed-Loop ECLSS Sabatier Reactor",
+      "required": "Catalytic hydrogenation of CO2 (CO2 + 4H2 -> CH4 + 2H2O) + methane pyrolysis",
+      "status": "Standard"
+    },
+    {
+      "name": "Bioregenerative Hydroponic Growth Chambers",
+      "required": "Photosynthetic photon flux density >300 umol/m2/s for fresh leafy greens and micro-nutrient replenishment",
+      "status": "Supplemental"
+    },
+    {
+      "name": "Thermal Control Radiator Loops",
+      "required": "Ammonia heat exchanger loops rejecting internal metabolic and electrical heat to deep space",
+      "status": "Standard"
+    }
+  ]
+}

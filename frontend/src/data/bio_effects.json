@@ -1,0 +1,93 @@
+{
+  "hotspots": [
+    {
+      "id": "brain",
+      "name": "Brain & Central Nervous System",
+      "target_region": "cranial",
+      "stressor": "Galactic Cosmic Rays (HZE Ions) & Microgravity",
+      "evidence_level": "Animal / cell studies",
+      "evidence_badge": "Animal / cell studies",
+      "what_research_shows": "Rodent models exposed to low-dose iron and titanium ions exhibit persistent neuro-inflammation, microglial activation, and reductions in hippocampal dendritic branching, correlating with memory and executive function deficits. Human cognitive risk over multi-year missions remains actively investigated.",
+      "limitation": "Extrapolating rodent accelerator beams (acute high dose-rate) to chronic, low-flux omnidirectional GCR in deep space carries substantial biophysical uncertainty.",
+      "source": "Parihar et al. (2016) Science Advances 2:e1600477; Cucinotta et al. (2014) Life Sciences in Space Research.",
+      "x": 50,
+      "y": 12
+    },
+    {
+      "id": "eyes",
+      "name": "Eyes & Vision (SANS & Cataracts)",
+      "target_region": "ocular",
+      "stressor": "Microgravity Fluid Shift & Space Radiation",
+      "evidence_level": "Human observations",
+      "evidence_badge": "Human observations",
+      "what_research_shows": "Spaceflight-Associated Neuro-ocular Syndrome (SANS) manifests in ~70% of long-duration astronauts, characterized by optic disc edema, globe flattening, and hyperopic shifts caused by cephalad venous fluid redistribution, not radiation. Separately, radiation exposure is linked to premature posterior subcapsular cataracts.",
+      "limitation": "Countermeasures such as lower-body negative pressure (LBNP) and artificial gravity are in active testing but not yet standard operational flight protocol.",
+      "source": "Lee et al. (2020) JAMA Ophthalmology; Chylack et al. (2012) Radiation Research 172:10.",
+      "x": 50,
+      "y": 18
+    },
+    {
+      "id": "bones_muscles",
+      "name": "Musculoskeletal Matrix",
+      "target_region": "skeletal",
+      "stressor": "Microgravity & Altered Gravity",
+      "evidence_level": "Human observations",
+      "evidence_badge": "Human observations",
+      "what_research_shows": "In microgravity, cancellous bone mineral density decreases by 1.0% to 1.5% per month (primarily in load-bearing calcaneus and lumbar spine), while postural muscle fibers atrophy without intensive ARED resistance exercise. Terrestrial human data for partial gravity (e.g. 0.38 g Mars, or exoplanetary gravity) does NOT exist.",
+      "limitation": "No human has lived in partial gravity (between 0g and 1g) for longer than the 3-day Apollo lunar surface sorties. Biological adaptation thresholds at 0.38g or 1.2g are unmeasured.",
+      "source": "Lang et al. (2004) Journal of Bone and Mineral Research; Sibonga et al. (2019) npj Microgravity.",
+      "x": 38,
+      "y": 62
+    },
+    {
+      "id": "cardiovascular",
+      "name": "Heart & Vascular Endothelium",
+      "target_region": "thoracic",
+      "stressor": "Fluid Shifts & Heavy-Ion Endothelial Remodeling",
+      "evidence_level": "Human observations & Modelled",
+      "evidence_badge": "Human observations",
+      "what_research_shows": "Removal of hydrostatic gradient causes rapid cephalad fluid shift, initial left ventricular enlargement followed by myocardial deconditioning, reduction in stroke volume upon return to 1g, and orthostatic intolerance. Terrestrial epidemiology models suggest heavy-ion microlesions accelerate arterial stiffness and atherogenesis.",
+      "limitation": "Late degenerative tissue cardiovascular effects at space-dose levels (<1 Gy) have wide statistical confidence intervals.",
+      "source": "Hughson et al. (2016) American Journal of Physiology; Delp et al. (2016) Scientific Reports 6:29901.",
+      "x": 52,
+      "y": 32
+    },
+    {
+      "id": "immune",
+      "name": "Hematopoietic Marrow & Immune Defense",
+      "target_region": "systemic",
+      "stressor": "Ionizing Radiation, Microgravity & Chronic Stress",
+      "evidence_level": "Human observations",
+      "evidence_badge": "Human observations",
+      "what_research_shows": "Astronaut blood analysis reveals reduced CD4+ T-cell proliferation, altered cytokine secretion profiles, and asymptomatic reactivation of latent herpesviruses (EBV, CMV, VZV). Radiation depletes rapidly dividing hematopoietic progenitor cells in bone marrow.",
+      "limitation": "Confounding terrestrial factors (circadian disruption, confinement, hyperoxia, launch stress) interact synergistically with radiation.",
+      "source": "Crucian et al. (2018) Frontiers in Immunology; Rooney et al. (2019) Frontiers in Microbiology.",
+      "x": 62,
+      "y": 42
+    },
+    {
+      "id": "whole_body_cancer",
+      "name": "Genomic Stability & Cancer Risk",
+      "target_region": "systemic",
+      "stressor": "Galactic Cosmic Rays & Solar Particle Events",
+      "evidence_level": "Modelled",
+      "evidence_badge": "Modelled",
+      "what_research_shows": "NASA permissible career exposure limits are set to prevent exceeding a 3% Risk of Exposure Induced Death (REID) from fatal cancer at the 95% confidence interval. High-Z and energy (HZE) ions produce dense ionization tracks causing complex, non-reparable double-strand breaks.",
+      "limitation": "High-LET biological effectiveness factors (Q) have large epistemic uncertainties; terrestrial human epidemiological data comes predominantly from low-LET gamma/X-ray exposures (e.g. atomic bomb survivors).",
+      "source": "Cucinotta et al. (2013) NASA TP-2013-217377; NCRP Report No. 132.",
+      "x": 48,
+      "y": 48
+    }
+  ],
+  "twins_study": {
+    "title": "Evidence from the NASA Twins Study",
+    "citation": "Garrett-Bakelman et al. (2019) Science 364(6436):eaau8650",
+    "evidence_badge": "Human observations",
+    "key_findings": [
+      "Telomere Dynamics: Telomeres elongated significantly during spaceflight and rapidly shortened within 48 hours of return to Earth.",
+      "Gene Expression: Over 90% of gene expression changes returned to baseline post-flight; a subset of immune, DNA repair, and mitochondrial genes remained altered at 6 months.",
+      "Chromosomal Inversions: Persistent chromosomal translocations and inversions observed, consistent with space radiation exposure.",
+      "Cognitive Stability: Cognitive performance remained mostly stable in-flight, with post-flight decreases in speed and accuracy attributed to readaptation stress."
+    ]
+  }
+}
