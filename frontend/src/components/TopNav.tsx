@@ -40,14 +40,14 @@ interface TopNavProps {
 }
 
 const NAV_ITEMS: { id: NavView; label: string; icon: React.ElementType }[] = [
-  { id: 'mission_control', label: '1. Mission Control', icon: Compass },
-  { id: 'explorer', label: '2. Exoplanet Explorer', icon: Compass },
-  { id: 'dossier', label: '3. Habitability Analysis', icon: Layers },
-  { id: 'anatomy_lab', label: '4. Anatomy Lab', icon: Dna },
-  { id: 'compare', label: '5. Compare Grid', icon: SplitSquareVertical },
-  { id: 'spectrum', label: '6. Spectrum Lab', icon: LineChart },
-  { id: 'settlement', label: '7. Settlement', icon: Home },
-  { id: 'about', label: '8. Sources', icon: Info }
+  { id: 'mission_control', label: 'Mission Control', icon: Compass },
+  { id: 'explorer', label: 'Exoplanet Explorer', icon: Compass },
+  { id: 'dossier', label: 'Habitability Analysis', icon: Layers },
+  { id: 'anatomy_lab', label: 'Anatomy Lab', icon: Dna },
+  { id: 'compare', label: 'Compare Grid', icon: SplitSquareVertical },
+  { id: 'spectrum', label: 'Spectrum Lab', icon: LineChart },
+  { id: 'settlement', label: 'Settlement', icon: Home },
+  { id: 'about', label: 'Sources', icon: Info }
 ];
 
 export const TopNav: React.FC<TopNavProps> = ({
