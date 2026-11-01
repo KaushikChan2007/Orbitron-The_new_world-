@@ -233,22 +233,22 @@ export const MissionControl: React.FC<MissionControlProps> = ({
             </div>
             <div className="space-y-1.5 text-[10px] font-mono my-auto">
               <div className="flex items-center justify-between text-[#A0A0A0]">
-                <span>1. Transit Photometry</span>
+                <span>Transit Photometry</span>
                 <span className="text-white font-bold">COMPLETE</span>
               </div>
               <div className="flex items-center justify-between text-[#A0A0A0]">
-                <span>2. Habitability Screening</span>
+                <span>Habitability Screening</span>
                 <span className="text-white font-bold">COMPLETE</span>
               </div>
               <div className="flex items-center justify-between text-white font-bold">
                 <span className="flex items-center gap-1.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-                  3. Biomolecular Anatomy
+                  Biomolecular Anatomy
                 </span>
                 <span className="text-white font-bold">READY</span>
               </div>
               <div className="flex items-center justify-between text-[#6F7C8E]">
-                <span>4. Surface ECLSS Life Support</span>
+                <span>Surface ECLSS Life Support</span>
                 <span>STANDBY</span>
               </div>
             </div>

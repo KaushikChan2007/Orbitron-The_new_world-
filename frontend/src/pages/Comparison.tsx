@@ -128,6 +128,50 @@ export const Comparison: React.FC<ComparisonProps> = ({
 
   return (
     <div className="space-y-6 pb-16 animate-fadeIn max-w-[1520px] mx-auto text-white font-sans">
+      {/* Visual Earth vs Exoplanet Comparison Hero Banner */}
+      <div className="rounded-[24px] overflow-hidden border border-white/15 bg-black/95 relative shadow-2xl">
+        <div className="p-4 sm:p-5 border-b border-white/10 flex flex-wrap items-center justify-between gap-3 bg-black/60 backdrop-blur-md">
+          <div>
+            <div className="text-[10px] font-mono uppercase tracking-widest text-neutral-400">
+              Comparative Planetary Morphology & Radiative Equilibrium
+            </div>
+            <h2 className="text-xl sm:text-2xl font-bold text-white tracking-wide font-mono flex items-center gap-2">
+              <Scale className="w-5 h-5 text-white" />
+              <span>Earth vs Exoplanet Comparison</span>
+            </h2>
+          </div>
+          <div className="flex items-center gap-3 text-xs font-mono">
+            <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-950/60 border border-blue-500/30 text-blue-200">
+              <span className="w-2 h-2 rounded-full bg-blue-400"></span>Earth (Sol III)
+            </span>
+            <span className="text-neutral-500 font-bold">vs</span>
+            <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-950/60 border border-amber-500/30 text-amber-200">
+              <span className="w-2 h-2 rounded-full bg-amber-400"></span>{comparisonList[0]?.pl_name || 'Exoplanet Target'}
+            </span>
+          </div>
+        </div>
+
+        {/* High-Resolution Side-by-Side Planet Visual */}
+        <div className="relative w-full aspect-[21/9] sm:aspect-[2.4/1] max-h-[460px] bg-black flex items-center justify-center overflow-hidden">
+          <img
+            src="/assets/earth-vs-exoplanet.png"
+            alt="Earth vs Exoplanet Comparison"
+            className="w-full h-full object-contain filter contrast-105"
+          />
+        </div>
+
+        <div className="p-4 bg-black/80 border-t border-white/10 grid grid-cols-1 md:grid-cols-2 gap-3 text-xs font-mono">
+          <div className="flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10">
+            <span className="text-neutral-400">Reference Baseline:</span>
+            <span className="text-white font-bold">Earth (Sol III) • G2V Main Sequence • 1.00 g</span>
+          </div>
+          <div className="flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10">
+            <span className="text-neutral-400">Primary Target:</span>
+            <span className="text-white font-bold">{comparisonList[0]?.pl_name || 'Target Exoplanet'} • {comparisonList[0]?.hostname || 'Host Star'}</span>
+          </div>
+        </div>
+      </div>
+
       {/* Top Header Bar */}
       <div className="p-5 rounded-[24px] glass-panel flex flex-wrap items-center justify-between gap-4 font-mono">
         <div>
@@ -297,7 +341,7 @@ export const Comparison: React.FC<ComparisonProps> = ({
               {/* SECTION 1: PHYSICAL DIMENSIONS */}
               <tr className="bg-white/[0.04]">
                 <td colSpan={comparisonList.length + 2} className="p-2.5 px-4 font-bold uppercase tracking-widest text-[10px] text-white">
-                  1. PHYSICAL DIMENSIONS & BULK COMPOSITION
+                  PHYSICAL DIMENSIONS & BULK COMPOSITION
                 </td>
               </tr>
               <tr className="divide-x divide-white/10 hover:bg-white/[0.02]">
@@ -360,7 +404,7 @@ export const Comparison: React.FC<ComparisonProps> = ({
               {/* SECTION 2: SURFACE MECHANICS & GRAVITATIONAL FORCES */}
               <tr className="bg-white/[0.04]">
                 <td colSpan={comparisonList.length + 2} className="p-2.5 px-4 font-bold uppercase tracking-widest text-[10px] text-white">
-                  2. SURFACE GRAVIMETRY & ORBITAL MECHANICS
+                  SURFACE GRAVIMETRY & ORBITAL MECHANICS
                 </td>
               </tr>
               <tr className="divide-x divide-white/10 hover:bg-white/[0.02]">
@@ -410,7 +454,7 @@ export const Comparison: React.FC<ComparisonProps> = ({
               {/* SECTION 3: STELLAR INSOLATION & THERMODYNAMICS */}
               <tr className="bg-white/[0.04]">
                 <td colSpan={comparisonList.length + 2} className="p-2.5 px-4 font-bold uppercase tracking-widest text-[10px] text-white">
-                  3. STELLAR INSOLATION & THERMAL ENVIRONMENT
+                  STELLAR INSOLATION & THERMAL ENVIRONMENT
                 </td>
               </tr>
               <tr className="divide-x divide-white/10 hover:bg-white/[0.02]">
@@ -458,7 +502,7 @@ export const Comparison: React.FC<ComparisonProps> = ({
               {/* SECTION 4: HUMAN PHYSIOLOGICAL CONSEQUENCES */}
               <tr className="bg-white/[0.04]">
                 <td colSpan={comparisonList.length + 2} className="p-2.5 px-4 font-bold uppercase tracking-widest text-[10px] text-white">
-                  4. HUMAN BIOMEDICAL IMPACT & PHYSIOLOGICAL STRAIN
+                  HUMAN BIOMEDICAL IMPACT & PHYSIOLOGICAL STRAIN
                 </td>
               </tr>
               <tr className="divide-x divide-white/10 hover:bg-white/[0.02]">
