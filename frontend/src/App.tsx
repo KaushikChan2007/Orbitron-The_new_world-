@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { TopNav, NavView } from './components/TopNav';
 import { MissionControl } from './pages/MissionControl';
 import { Explorer } from './pages/Explorer';
@@ -14,40 +14,19 @@ import { Exoplanet } from './types';
 import { calculateHabitability } from './lib/habitability';
 import defaultSnapshot from './data/planets_snapshot.json';
 
+interface HistoryItem {
+  view: NavView;
+  scrollY: number;
+  planetName?: string;
+}
+
 export function App() {
   const [currentView, setCurrentView] = useState<NavView>('mission_control');
-  const [history, setHistory] = useState<NavView[]>(['mission_control']);
+  const [history, setHistory] = useState<HistoryItem[]>([
+    { view: 'mission_control', scrollY: 0 }
+  ]);
   const [historyIndex, setHistoryIndex] = useState(0);
-
-  const handleSelectView = (view: NavView) => {
-    if (view === currentView) return;
-    const newHistory = history.slice(0, historyIndex + 1);
-    newHistory.push(view);
-    setHistory(newHistory);
-    setHistoryIndex(newHistory.length - 1);
-    setCurrentView(view);
-  };
-
-  const handleGoBack = () => {
-    if (historyIndex > 0) {
-      const prevIdx = historyIndex - 1;
-      setHistoryIndex(prevIdx);
-      setCurrentView(history[prevIdx]);
-    }
-  };
-
-  const handleGoForward = () => {
-    if (historyIndex < history.length - 1) {
-      const nextIdx = historyIndex + 1;
-      setHistoryIndex(nextIdx);
-      setCurrentView(history[nextIdx]);
-    }
-  };
-
-  // Ensure each tab begins from the top at the header
-  useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-  }, [currentView]);
+  const isNavigatingHistory = useRef(false);
 
   const initialPlanets = (defaultSnapshot.planets || []) as Exoplanet[];
   const [planets, setPlanets] = useState<Exoplanet[]>(initialPlanets);
@@ -69,6 +48,136 @@ export function App() {
     return comp.length > 0 ? comp : initialPlanets.slice(0, 2);
   });
   const [metadata, setMetadata] = useState<any>(defaultSnapshot.metadata || {});
+
+  // Continuously record scroll position so back/forward knows the exact spot
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!isNavigatingHistory.current) {
+        const y = window.scrollY || document.documentElement.scrollTop || 0;
+        setHistory((prev) => {
+          if (!prev[historyIndex] || prev[historyIndex].scrollY === y) return prev;
+          const updated = [...prev];
+          updated[historyIndex] = {
+            ...updated[historyIndex],
+            scrollY: y,
+            planetName: selectedPlanet?.pl_name
+          };
+          return updated;
+        });
+      }
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [historyIndex, selectedPlanet?.pl_name]);
+
+  const handleSelectView = (view: NavView) => {
+    if (view === currentView) return;
+
+    // Capture current spot before navigating away
+    const currentScroll = window.scrollY || document.documentElement.scrollTop || 0;
+    const updatedHistory = [...history];
+    if (updatedHistory[historyIndex]) {
+      updatedHistory[historyIndex] = {
+        ...updatedHistory[historyIndex],
+        scrollY: currentScroll,
+        planetName: selectedPlanet?.pl_name
+      };
+    }
+
+    // Truncate forward history and push new tab starting from header (top: 0)
+    const newHistory = updatedHistory.slice(0, historyIndex + 1);
+    newHistory.push({
+      view,
+      scrollY: 0,
+      planetName: selectedPlanet?.pl_name
+    });
+
+    setHistory(newHistory);
+    setHistoryIndex(newHistory.length - 1);
+    isNavigatingHistory.current = false;
+    setCurrentView(view);
+
+    // Each new tab cleanly begins at the top from the header
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  };
+
+  const handleGoBack = () => {
+    if (historyIndex > 0) {
+      // 1. Capture current spot before navigating away
+      const currentScroll = window.scrollY || document.documentElement.scrollTop || 0;
+      const updatedHistory = [...history];
+      if (updatedHistory[historyIndex]) {
+        updatedHistory[historyIndex] = {
+          ...updatedHistory[historyIndex],
+          scrollY: currentScroll,
+          planetName: selectedPlanet?.pl_name
+        };
+        setHistory(updatedHistory);
+      }
+
+      const prevIdx = historyIndex - 1;
+      const targetEntry = updatedHistory[prevIdx];
+      setHistoryIndex(prevIdx);
+      isNavigatingHistory.current = true;
+      setCurrentView(targetEntry.view);
+
+      // Restore active planet context if different
+      if (targetEntry.planetName && targetEntry.planetName !== selectedPlanet?.pl_name) {
+        const match = planets.find((p) => p.pl_name === targetEntry.planetName);
+        if (match) setSelectedPlanet(match);
+      }
+
+      // Restore the exact spot where work was happening
+      const restoreScroll = () => {
+        window.scrollTo({ top: targetEntry.scrollY, left: 0, behavior: 'instant' });
+      };
+      restoreScroll();
+      requestAnimationFrame(restoreScroll);
+      setTimeout(() => {
+        restoreScroll();
+        isNavigatingHistory.current = false;
+      }, 60);
+    }
+  };
+
+  const handleGoForward = () => {
+    if (historyIndex < history.length - 1) {
+      // 1. Capture current spot before navigating away
+      const currentScroll = window.scrollY || document.documentElement.scrollTop || 0;
+      const updatedHistory = [...history];
+      if (updatedHistory[historyIndex]) {
+        updatedHistory[historyIndex] = {
+          ...updatedHistory[historyIndex],
+          scrollY: currentScroll,
+          planetName: selectedPlanet?.pl_name
+        };
+        setHistory(updatedHistory);
+      }
+
+      const nextIdx = historyIndex + 1;
+      const targetEntry = updatedHistory[nextIdx];
+      setHistoryIndex(nextIdx);
+      isNavigatingHistory.current = true;
+      setCurrentView(targetEntry.view);
+
+      // Restore active planet context if different
+      if (targetEntry.planetName && targetEntry.planetName !== selectedPlanet?.pl_name) {
+        const match = planets.find((p) => p.pl_name === targetEntry.planetName);
+        if (match) setSelectedPlanet(match);
+      }
+
+      // Restore the exact spot where work was happening
+      const restoreScroll = () => {
+        window.scrollTo({ top: targetEntry.scrollY, left: 0, behavior: 'instant' });
+      };
+      restoreScroll();
+      requestAnimationFrame(restoreScroll);
+      setTimeout(() => {
+        restoreScroll();
+        isNavigatingHistory.current = false;
+      }, 60);
+    }
+  };
 
   // Sync with backend if reachable
   useEffect(() => {
@@ -215,7 +324,7 @@ export function App() {
         onClose={() => setIsAiOpen(false)}
         selectedPlanet={selectedPlanet}
         habitability={habitability}
-        onNavigate={(view) => setCurrentView(view as NavView)}
+        onNavigate={(view) => handleSelectView(view as NavView)}
       />
 
       {/* Quick View Detail Drawer */}
@@ -226,7 +335,7 @@ export function App() {
         onAnalyze={(p) => {
           handleSelectPlanet(p);
           setIsDrawerOpen(false);
-          setCurrentView('dossier');
+          handleSelectView('dossier');
         }}
         onCompare={(p) => {
           handleAddToComparison(p);
@@ -235,7 +344,7 @@ export function App() {
         onOpenSpectrum={(p) => {
           handleSelectPlanet(p);
           setIsDrawerOpen(false);
-          setCurrentView('spectrum');
+          handleSelectView('spectrum');
         }}
         retrievedAt={metadata.retrieved_at}
       />
