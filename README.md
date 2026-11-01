@@ -1,23 +1,49 @@
 # Orbitron: The New World
 
-Orbitron is an immersive exoplanet intelligence and space-biology platform that blends NASA exoplanet data, astrophysical habitability models, atmospheric spectroscopy, and human radiobiology into a cinematic research experience.
+<div align="center">
+
+[![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.110%2B-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
+[![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=white)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![NASA](https://img.shields.io/badge/Data-NASA%20Exoplanet%20Archive-0B3D91)](https://exoplanetarchive.ipac.caltech.edu/)
+
+</div>
+
+<p align="center">
+  <img src="assets/earth-vs-exoplanet.png" alt="Orbitron hero visualization" width="1000" />
+</p>
 
 > Beyond Earth. Towards Humanity's Next Home.
 
-## Overview
+Orbitron is a cinematic exoplanet intelligence platform that combines NASA exoplanet telemetry, habitability science, atmospheric spectroscopy, and human radiobiology into a single interactive research experience.
 
-Orbitron helps users investigate:
+## Why this project matters
+
+Orbitron helps users explore:
 - which exoplanets are most promising for habitability analysis,
-- how stellar flux and cloud feedback changes the habitable zone,
-- what atmospheric chemistry may be inferred from transmission spectra,
-- and how deep-space radiation affects human DNA, immunity, and physiology.
+- how stellar flux and cloud feedback reshape the habitable zone,
+- what atmospheric chemistry can be inferred from transmission spectra,
+- and how deep-space radiation affects DNA, immunity, and long-duration human survival.
 
-This project combines:
+The project blends:
 - a FastAPI science backend,
 - a React + TypeScript frontend,
-- NASA archive data,
+- curated NASA archive data,
 - a local exoplanet snapshot,
-- and AI-assisted scientific reasoning.
+- and grounded AI-assisted scientific reasoning.
+
+### Quick project stats
+
+- Real exoplanet archive dataset coverage
+- Habitability and thermal-zone analysis
+- AI chat + comparative planetary insight engine
+- Space-radiation biology and anatomy modeling
+- Mission-control style cinematic UI
+
+---
+
+## Overview
 
 ---
 
