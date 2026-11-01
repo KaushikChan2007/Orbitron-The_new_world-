@@ -172,6 +172,80 @@ export const Comparison: React.FC<ComparisonProps> = ({
         </div>
       </div>
 
+      {/* Visual Habitable Zone Planetary Scale Lineup */}
+      <div className="rounded-[24px] overflow-hidden border border-white/15 bg-black/95 relative shadow-2xl">
+        <div className="p-4 sm:p-5 border-b border-white/10 flex flex-wrap items-center justify-between gap-3 bg-black/60 backdrop-blur-md">
+          <div>
+            <div className="text-[10px] font-mono uppercase tracking-widest text-neutral-400">
+              NASA Kepler Habitable Zone Planetary Radii Lineup
+            </div>
+            <h2 className="text-xl sm:text-2xl font-bold text-white tracking-wide font-mono flex items-center gap-2">
+              <Compass className="w-5 h-5 text-white" />
+              <span>Habitable Zone Planetary Scale Lineup</span>
+            </h2>
+          </div>
+          <div className="text-xs font-mono text-neutral-400">
+            Descending Relative Radii: <span className="text-white font-bold">2.38 R⊕ → 1.00 R⊕</span>
+          </div>
+        </div>
+
+        {/* High-Resolution Planetary Scale Lineup Visual */}
+        <div className="relative w-full aspect-[21/9] sm:aspect-[2.4/1] max-h-[460px] bg-black flex items-center justify-center overflow-hidden">
+          <img
+            src="/assets/kepler-planets-scale.png"
+            alt="Kepler Habitable Zone Planets Scale Lineup"
+            className="w-full h-full object-contain filter contrast-105"
+          />
+        </div>
+
+        {/* Interactive Planetary Dimension Badges */}
+        <div className="p-4 bg-black/80 border-t border-white/10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 text-xs font-mono">
+          <div className="p-2.5 rounded-xl bg-white/5 border border-white/10 space-y-1">
+            <div className="text-[10px] text-neutral-400 uppercase">Sub-Neptune</div>
+            <div className="font-bold text-white text-sm">Kepler-22b</div>
+            <div className="text-[11px] text-neutral-300">2.38 R⊕ • 289.9 d</div>
+            <div className="text-[9px] text-neutral-500">Host: G5V (5518 K)</div>
+          </div>
+
+          <div className="p-2.5 rounded-xl bg-white/5 border border-white/10 space-y-1">
+            <div className="text-[10px] text-neutral-400 uppercase">Super-Venus</div>
+            <div className="font-bold text-white text-sm">Kepler-69c</div>
+            <div className="text-[11px] text-neutral-300">1.71 R⊕ • 242.5 d</div>
+            <div className="text-[9px] text-neutral-500">Host: G4V (5638 K)</div>
+          </div>
+
+          <div className="p-2.5 rounded-xl bg-white/5 border border-white/10 space-y-1">
+            <div className="text-[10px] text-neutral-400 uppercase">Earth Cousin</div>
+            <div className="font-bold text-white text-sm">Kepler-452b</div>
+            <div className="text-[11px] text-neutral-300">1.63 R⊕ • 384.8 d</div>
+            <div className="text-[9px] text-neutral-500">Host: G2V (5757 K)</div>
+          </div>
+
+          <div className="p-2.5 rounded-xl bg-white/5 border border-white/10 space-y-1">
+            <div className="text-[10px] text-neutral-400 uppercase">Super-Earth</div>
+            <div className="font-bold text-white text-sm">Kepler-62f</div>
+            <div className="text-[11px] text-neutral-300">1.41 R⊕ • 267.3 d</div>
+            <div className="text-[9px] text-neutral-500">Host: K2V (4925 K)</div>
+          </div>
+
+          <div className="p-2.5 rounded-xl bg-white/5 border border-white/10 space-y-1">
+            <div className="text-[10px] text-neutral-400 uppercase">M-Dwarf Earth-Size</div>
+            <div className="font-bold text-white text-sm">Kepler-186f</div>
+            <div className="text-[11px] text-neutral-300">1.17 R⊕ • 129.9 d</div>
+            <div className="text-[9px] text-neutral-500">Host: M1V (3755 K)</div>
+          </div>
+
+          <div className="p-2.5 rounded-xl bg-blue-950/30 border border-blue-500/30 space-y-1">
+            <div className="text-[10px] text-blue-300 uppercase">Baseline Standard</div>
+            <div className="font-bold text-white text-sm">Earth (Sol III)</div>
+            <div className="text-[11px] text-blue-200 font-bold">1.00 R⊕ • 365.2 d</div>
+            <div className="text-[9px] text-blue-400">Host: Sun G2V (5778 K)</div>
+          </div>
+        </div>
+      </div>
+
+
+
       {/* Top Header Bar */}
       <div className="p-5 rounded-[24px] glass-panel flex flex-wrap items-center justify-between gap-4 font-mono">
         <div>

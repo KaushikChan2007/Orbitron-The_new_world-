@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Layers, Info, ExternalLink, Image as ImageIcon, Sparkles } from 'lucide-react';
+import { Layers, Info, ExternalLink, Image as ImageIcon, Sparkles, Compass, Eye, Maximize2 } from 'lucide-react';
 import { Exoplanet } from '../types';
 
 interface HabitableZoneDiagramProps {
@@ -7,7 +7,9 @@ interface HabitableZoneDiagramProps {
 }
 
 export const HabitableZoneDiagram: React.FC<HabitableZoneDiagramProps> = ({ planet }) => {
-  const [showOriginalPaperFigure, setShowOriginalPaperFigure] = useState(true);
+  const [showOriginalPaperFigure, setShowOriginalPaperFigure] = useState(false);
+  const [showLandscapeChart, setShowLandscapeChart] = useState(true);
+  const [expandedLandscape, setExpandedLandscape] = useState(false);
 
   // Stellar luminosity and temperature
   const teff = planet.st_teff || 5778;
@@ -70,14 +72,100 @@ export const HabitableZoneDiagram: React.FC<HabitableZoneDiagramProps> = ({ plan
           </p>
         </div>
 
-        <button
-          onClick={() => setShowOriginalPaperFigure(!showOriginalPaperFigure)}
-          className="px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/15 border border-white/20 text-xs font-bold text-white cursor-pointer transition-colors flex items-center gap-1.5 yt-hover-btn"
-        >
-          <ImageIcon className="w-3.5 h-3.5 text-white" />
-          <span>{showOriginalPaperFigure ? 'Hide Reference Paper Figure' : 'View Paper Figure (Tuomi 2013)'}</span>
-        </button>
+        <div className="flex items-center gap-2 flex-wrap">
+          <button
+            onClick={() => setShowLandscapeChart(!showLandscapeChart)}
+            className={`px-3 py-1.5 rounded-xl border text-xs font-bold cursor-pointer transition-colors flex items-center gap-1.5 yt-hover-btn ${
+              showLandscapeChart ? 'bg-white text-black border-white' : 'bg-white/5 hover:bg-white/15 border-white/20 text-white'
+            }`}
+          >
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>{showLandscapeChart ? 'Hide CSI Landscape' : 'View CSI Landscape'}</span>
+          </button>
+
+          <button
+            onClick={() => setShowOriginalPaperFigure(!showOriginalPaperFigure)}
+            className={`px-3 py-1.5 rounded-xl border text-xs font-bold cursor-pointer transition-colors flex items-center gap-1.5 yt-hover-btn ${
+              showOriginalPaperFigure ? 'bg-white text-black border-white' : 'bg-white/5 hover:bg-white/15 border-white/20 text-white'
+            }`}
+          >
+            <ImageIcon className="w-3.5 h-3.5" />
+            <span>{showOriginalPaperFigure ? 'Hide Cloud Model' : 'Cloud Model (Tuomi 2013)'}</span>
+          </button>
+        </div>
       </div>
+
+      {/* Carl Sagan Institute Habitable Zone Landscape Card */}
+      {showLandscapeChart && (
+        <div className="rounded-2xl overflow-hidden bg-black border border-white/20 space-y-3 p-4 animate-fadeIn">
+          <div className="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-2.5">
+            <div>
+              <span className="text-[10px] text-neutral-400 uppercase tracking-widest block">
+                Carl Sagan Institute / Chester Harman / Pablo Carlos Budassi
+              </span>
+              <h4 className="font-bold text-white text-sm">
+                Habitable Zone Landscape: Starlight vs Stellar Temperature
+              </h4>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-[10px] text-neutral-400 font-mono hidden sm:inline">
+                Optimistic & Conservative Boundaries
+              </span>
+              <button
+                onClick={() => setExpandedLandscape(!expandedLandscape)}
+                className="p-1.5 rounded-lg bg-white/10 hover:bg-white text-white hover:text-black cursor-pointer transition-colors"
+                title={expandedLandscape ? 'Standard View' : 'Expand High-Res'}
+              >
+                <Maximize2 className="w-3.5 h-3.5" />
+              </button>
+            </div>
+          </div>
+
+          {/* High-Resolution Landscape Image */}
+          <div className={`relative w-full rounded-xl overflow-hidden bg-black flex items-center justify-center border border-white/10 transition-all ${
+            expandedLandscape ? 'max-h-[800px]' : 'max-h-[500px]'
+          }`}>
+            <img
+              src="/assets/habitable-zone-landscape.png"
+              alt="Carl Sagan Institute Habitable Zone Landscape"
+              className="w-full h-full object-contain filter contrast-105"
+            />
+          </div>
+
+          {/* Scientific Legend & Annotations */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5 pt-1 text-[11px] font-sans">
+            <div className="p-2.5 rounded-xl bg-white/5 border border-white/10 space-y-1">
+              <div className="font-mono font-bold text-white flex items-center gap-1.5">
+                <span className="w-2 h-0.5 bg-green-400"></span>
+                <span>Conservative HZ</span>
+              </div>
+              <p className="text-neutral-400 text-[10px] leading-relaxed">
+                Runaway greenhouse to maximum CO₂ greenhouse limits. Terrestrial planets here maintain stable liquid water over gigayears.
+              </p>
+            </div>
+
+            <div className="p-2.5 rounded-xl bg-white/5 border border-white/10 space-y-1">
+              <div className="font-mono font-bold text-white flex items-center gap-1.5">
+                <span className="w-2 h-0.5 bg-amber-400"></span>
+                <span>Optimistic HZ</span>
+              </div>
+              <p className="text-neutral-400 text-[10px] leading-relaxed">
+                Recent Venus to Early Mars boundaries. Planets may retain surface oceans under dense cloud shielding or volcanic atmospheres.
+              </p>
+            </div>
+
+            <div className="p-2.5 rounded-xl bg-white/5 border border-white/10 space-y-1">
+              <div className="font-mono font-bold text-white flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-white animate-pulse"></span>
+                <span>Active Target: {planet.pl_name}</span>
+              </div>
+              <p className="text-neutral-400 text-[10px] leading-relaxed">
+                Starlight: <strong className="text-white font-mono">{planet.pl_insol ? `${Math.round(planet.pl_insol * 100)}%` : 'N/A'}</strong> of Sun • Teff: <strong className="text-white font-mono">{planet.st_teff ? `${Math.round((planet.st_teff / 5778) * 100)}%` : 'N/A'}</strong> of Sol
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Embedded Paper Reference Figure (Image 2) */}
       {showOriginalPaperFigure && (
