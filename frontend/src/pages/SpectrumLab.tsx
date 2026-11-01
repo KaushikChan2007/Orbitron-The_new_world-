@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import {
   LineChart,
+  Sparkles,
+  Compass,
   Upload,
   AlertTriangle,
   FileSpreadsheet,
@@ -147,6 +149,73 @@ export const SpectrumLab: React.FC<SpectrumLabProps> = ({
 
   return (
     <div className="space-y-6 pb-12 animate-fadeIn max-w-[1520px] mx-auto text-white font-sans">
+      {/* The Electromagnetic Spectrum Reference Banner */}
+      <div className="rounded-[24px] overflow-hidden border border-white/15 bg-black/95 relative shadow-2xl">
+        <div className="p-4 sm:p-5 border-b border-white/10 flex flex-wrap items-center justify-between gap-3 bg-black/60 backdrop-blur-md">
+          <div>
+            <div className="text-[10px] font-mono uppercase tracking-widest text-neutral-400">
+              Astrophysical Radiation & Exoplanet Observation Windows
+            </div>
+            <h2 className="text-xl sm:text-2xl font-bold text-white tracking-wide font-mono flex items-center gap-2">
+              <Sparkles className="w-5 h-5 text-white" />
+              <span>The Electromagnetic Spectrum</span>
+            </h2>
+          </div>
+          <div className="text-xs font-mono text-neutral-400">
+            Exoplanet Atmospheric Window: <span className="text-white font-bold">Infrared 0.6 – 28 μm (JWST NIRSpec / MIRI)</span>
+          </div>
+        </div>
+
+        {/* High-Resolution Spectrum Graphic */}
+        <div className="relative w-full aspect-[21/9] sm:aspect-[2.5/1] max-h-[440px] bg-black flex items-center justify-center overflow-hidden">
+          <img
+            src="/assets/electromagnetic-spectrum.png"
+            alt="The Electromagnetic Spectrum: All Wavelengths. All Around Us."
+            className="w-full h-full object-contain filter contrast-105"
+          />
+        </div>
+
+        {/* Spectral Domain Bands Callout Grid */}
+        <div className="p-4 bg-black/80 border-t border-white/10 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2 text-xs font-mono">
+          <div className="p-2 rounded-xl bg-white/5 border border-white/10 space-y-0.5">
+            <span className="text-[9px] text-neutral-400 uppercase block">Radio Waves</span>
+            <span className="text-white font-bold text-[11px]">10³ m (1 km)</span>
+            <span className="text-[9px] text-neutral-500 block">Pulsars / SKA</span>
+          </div>
+          <div className="p-2 rounded-xl bg-white/5 border border-white/10 space-y-0.5">
+            <span className="text-[9px] text-neutral-400 uppercase block">Microwaves</span>
+            <span className="text-white font-bold text-[11px]">10⁻¹ m (10 cm)</span>
+            <span className="text-[9px] text-neutral-500 block">ALMA Sub-mm</span>
+          </div>
+          <div className="p-2 rounded-xl bg-amber-950/40 border border-amber-500/30 space-y-0.5">
+            <span className="text-[9px] text-amber-300 uppercase block font-bold">Infrared (Core)</span>
+            <span className="text-white font-bold text-[11px]">10⁻³ – 10⁻⁶ m</span>
+            <span className="text-[9px] text-amber-200 block">JWST / H₂O & CO₂</span>
+          </div>
+          <div className="p-2 rounded-xl bg-white/5 border border-white/10 space-y-0.5">
+            <span className="text-[9px] text-neutral-400 uppercase block">Visible Light</span>
+            <span className="text-white font-bold text-[11px]">380 – 750 nm</span>
+            <span className="text-[9px] text-neutral-500 block">Hubble / Transits</span>
+          </div>
+          <div className="p-2 rounded-xl bg-white/5 border border-white/10 space-y-0.5">
+            <span className="text-[9px] text-neutral-400 uppercase block">Ultraviolet</span>
+            <span className="text-white font-bold text-[11px]">10⁻⁸ m (10 nm)</span>
+            <span className="text-[9px] text-neutral-500 block">Stellar Flares & Ly-α</span>
+          </div>
+          <div className="p-2 rounded-xl bg-white/5 border border-white/10 space-y-0.5">
+            <span className="text-[9px] text-neutral-400 uppercase block">X-Rays</span>
+            <span className="text-white font-bold text-[11px]">10⁻¹⁰ m (0.01 nm)</span>
+            <span className="text-[9px] text-neutral-500 block">Chandra / Corona</span>
+          </div>
+          <div className="p-2 rounded-xl bg-white/5 border border-white/10 space-y-0.5">
+            <span className="text-[9px] text-neutral-400 uppercase block">Gamma Rays</span>
+            <span className="text-white font-bold text-[11px]">10⁻¹² m (1 pm)</span>
+            <span className="text-[9px] text-neutral-500 block">Fermi / Cosmic Rays</span>
+          </div>
+        </div>
+      </div>
+
+
       {/* Top Header Card */}
       <div className="p-6 rounded-[24px] glass-panel space-y-4 font-mono">
         <div className="flex flex-wrap items-center justify-between gap-4">

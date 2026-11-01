@@ -44,6 +44,7 @@ export const AnatomyLab: React.FC<AnatomyLabProps> = ({
   const [durationDays, setDurationDays] = useState(180);
   const [shieldingId, setShieldingId] = useState('moderate');
   const [activeTab, setActiveTab] = useState<'dna' | 'cellular' | 'immune' | 'nervous' | 'body' | 'papers'>('dna');
+  const [dnaVisualMode, setDnaVisualMode] = useState<'mechanism' | 'pathways' | 'canvas'>('mechanism');
   const [selectedHotspotId, setSelectedHotspotId] = useState<string>('brain');
 
   const env = environmentsData.environments.find((e) => e.id === selectedEnvId) || environmentsData.environments[0];
@@ -332,26 +333,132 @@ export const AnatomyLab: React.FC<AnatomyLabProps> = ({
                 {renderBadge('Calibrated in Human Fibroblasts')}
               </div>
 
-              {/* Simulation Canvas / Graphic View */}
-              <div className="relative h-64 rounded-2xl bg-black border border-white/15 overflow-hidden flex items-center justify-center p-4">
-                <img
-                  src="/assets/dna-hero.jpg"
-                  alt="DNA Double Helix Radiation Damage"
-                  className="w-full h-full object-cover opacity-50"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40" />
-
-                {/* Overlay live metrics */}
-                <div className="absolute top-4 left-4 z-10 px-3.5 py-2.5 rounded-xl bg-black/90 border border-white/20 text-xs font-mono">
-                  <span className="text-[10px] text-neutral-400 uppercase block">Simulated DSBs per Cell</span>
-                  <span className="text-2xl font-bold text-white">~{dsbPerCell}</span>
-                  <span className="text-[10px] text-neutral-400 block">(calibrated at ~35 DSBs/Gy, Rothkamm 2003)</span>
-                </div>
-
-                <div className="absolute bottom-4 right-4 z-10 px-3.5 py-2.5 rounded-xl bg-black/90 border border-white/20 text-[10px] font-mono text-neutral-300 max-w-xs text-right">
-                  Heavy Ion Traversal: A cell nucleus is crossed by an energetic HZE particle ~once every several months during deep-space transit (Zeitlin et al. 2013).
-                </div>
+              {/* Visual Figure Mode Switcher */}
+              <div className="flex flex-wrap items-center gap-2 p-1 rounded-xl bg-white/5 border border-white/10 font-mono text-xs">
+                <button
+                  onClick={() => setDnaVisualMode('mechanism')}
+                  className={`px-3 py-1.5 rounded-lg font-bold transition-all cursor-pointer ${
+                    dnaVisualMode === 'mechanism' ? 'bg-white text-black shadow-md' : 'text-neutral-400 hover:text-white'
+                  }`}
+                >
+                  Direct & Indirect Damage Mechanism
+                </button>
+                <button
+                  onClick={() => setDnaVisualMode('pathways')}
+                  className={`px-3 py-1.5 rounded-lg font-bold transition-all cursor-pointer ${
+                    dnaVisualMode === 'pathways' ? 'bg-white text-black shadow-md' : 'text-neutral-400 hover:text-white'
+                  }`}
+                >
+                  DNA Repair Pathways & Endpoints
+                </button>
+                <button
+                  onClick={() => setDnaVisualMode('canvas')}
+                  className={`px-3 py-1.5 rounded-lg font-bold transition-all cursor-pointer ${
+                    dnaVisualMode === 'canvas' ? 'bg-white text-black shadow-md' : 'text-neutral-400 hover:text-white'
+                  }`}
+                >
+                  Heavy Ion Track Simulation
+                </button>
               </div>
+
+              {/* FIGURE 1: Direct & Indirect Radiation Damage */}
+              {dnaVisualMode === 'mechanism' && (
+                <div className="rounded-2xl bg-black border border-white/20 overflow-hidden space-y-3 p-4 animate-fadeIn">
+                  <div className="flex items-center justify-between border-b border-white/10 pb-2">
+                    <div>
+                      <h4 className="font-mono font-bold text-white text-sm">
+                        Direct vs Indirect Radiation Damage to Cellular DNA
+                      </h4>
+                      <p className="text-[10px] text-neutral-400 font-sans">
+                        Physical strand scission vs water radiolysis reactive oxygen species generation (•OH, •O₂⁻).
+                      </p>
+                    </div>
+                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/10 text-white">Biophysical Mechanism</span>
+                  </div>
+
+                  <div className="relative w-full rounded-xl overflow-hidden bg-white p-2 flex items-center justify-center max-h-[420px]">
+                    <img
+                      src="/assets/direct-indirect-radiation.png"
+                      alt="Direct & Indirect Radiation Damage Mechanism"
+                      className="w-full h-full object-contain max-h-[380px]"
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono pt-1">
+                    <div className="p-2.5 rounded-xl bg-white/5 border border-white/10">
+                      <span className="text-white font-bold block">Direct Ion Action:</span>
+                      <span className="text-neutral-300 text-[11px] font-sans">High-LET charged particles directly ionize electrons from DNA bases and sugar-phosphate bonds, causing complex clustered strand breaks.</span>
+                    </div>
+                    <div className="p-2.5 rounded-xl bg-white/5 border border-white/10">
+                      <span className="text-white font-bold block">Indirect Water Radiolysis:</span>
+                      <span className="text-neutral-300 text-[11px] font-sans">Ionization of cellular H₂O yields free radicals (•OH, •O₂⁻, H₂O₂) diffusing within ~4 nm to oxidize DNA, accounting for ~70% of low-LET damage.</span>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* FIGURE 2: DNA Repair Kinetics & Endpoints Flowchart */}
+              {dnaVisualMode === 'pathways' && (
+                <div className="rounded-2xl bg-black border border-white/20 overflow-hidden space-y-3 p-4 animate-fadeIn">
+                  <div className="flex items-center justify-between border-b border-white/10 pb-2">
+                    <div>
+                      <h4 className="font-mono font-bold text-white text-sm">
+                        DNA Damage Repair Outcomes & Mutational Cascades
+                      </h4>
+                      <p className="text-[10px] text-neutral-400 font-sans">
+                        Enzymatic repair fidelity: Correct repair (survival), Mis-repair (cancer/aberration), Un-repair (apoptosis).
+                      </p>
+                    </div>
+                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/10 text-white">Cellular Fate Engine</span>
+                  </div>
+
+                  <div className="relative w-full rounded-xl overflow-hidden bg-white p-2 flex items-center justify-center max-h-[420px]">
+                    <img
+                      src="/assets/dna-repair-pathways.png"
+                      alt="DNA Damage Repair Pathways and Outcomes"
+                      className="w-full h-full object-contain max-h-[380px]"
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs font-mono pt-1">
+                    <div className="p-2.5 rounded-xl bg-emerald-950/40 border border-emerald-500/30">
+                      <span className="text-emerald-300 font-bold block">Correct Repair:</span>
+                      <span className="text-neutral-300 text-[10px] font-sans">High-fidelity Homologous Recombination (HR) preserves genomic sequence; cell survives normally.</span>
+                    </div>
+                    <div className="p-2.5 rounded-xl bg-amber-950/40 border border-amber-500/30">
+                      <span className="text-amber-300 font-bold block">Mis-Repair:</span>
+                      <span className="text-neutral-300 text-[10px] font-sans">Error-prone NHEJ leads to chromosome translocations and neoplastic cell transformation.</span>
+                    </div>
+                    <div className="p-2.5 rounded-xl bg-rose-950/40 border border-rose-500/30">
+                      <span className="text-rose-300 font-bold block">Un-Repair:</span>
+                      <span className="text-neutral-300 text-[10px] font-sans">Persistent clustered DSBs trigger p53 checkpoints, mitotic catastrophe, apoptosis, and necrosis.</span>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Simulation Canvas / Graphic View */}
+              {dnaVisualMode === 'canvas' && (
+                <div className="relative h-64 rounded-2xl bg-black border border-white/15 overflow-hidden flex items-center justify-center p-4 animate-fadeIn">
+                  <img
+                    src="/assets/dna-hero.jpg"
+                    alt="DNA Double Helix Radiation Damage"
+                    className="w-full h-full object-cover opacity-50"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40" />
+
+                  {/* Overlay live metrics */}
+                  <div className="absolute top-4 left-4 z-10 px-3.5 py-2.5 rounded-xl bg-black/90 border border-white/20 text-xs font-mono">
+                    <span className="text-[10px] text-neutral-400 uppercase block">Simulated DSBs per Cell</span>
+                    <span className="text-2xl font-bold text-white">~{dsbPerCell}</span>
+                    <span className="text-[10px] text-neutral-400 block">(calibrated at ~35 DSBs/Gy, Rothkamm 2003)</span>
+                  </div>
+
+                  <div className="absolute bottom-4 right-4 z-10 px-3.5 py-2.5 rounded-xl bg-black/90 border border-white/20 text-[10px] font-mono text-neutral-300 max-w-xs text-right">
+                    Heavy Ion Traversal: A cell nucleus is crossed by an energetic HZE particle ~once every several months during deep-space transit (Zeitlin et al. 2013).
+                  </div>
+                </div>
+              )}
 
               {/* Side Facts Grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
