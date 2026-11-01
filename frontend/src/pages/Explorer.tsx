@@ -93,14 +93,14 @@ export const Explorer: React.FC<ExplorerProps> = ({
         <div className="flex items-center justify-between text-xs font-mono text-neutral-400 px-1">
           <span className="text-sm font-bold tracking-wider text-white uppercase flex items-center gap-2">
             <Compass className="w-4 h-4 text-white" />
-            <span>2. Exoplanet Explorer</span>
+            <span>Exoplanet Explorer</span>
           </span>
           <span className="text-[11px]">NASA Composite Archive Telemetry (pscomppars)</span>
         </div>
         <div className="relative rounded-[28px] overflow-hidden border border-white/20 shadow-2xl bg-black">
           <img
             src="/assets/explorer-hero.png"
-            alt="2. Exoplanet Explorer Cinematic Render"
+            alt="Exoplanet Explorer Cinematic Render"
             className="w-full max-h-[420px] object-cover object-center"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
@@ -109,7 +109,7 @@ export const Explorer: React.FC<ExplorerProps> = ({
               NASA VERIFIED ARCHIVAL WORLDS
             </span>
             <h2 className="text-2xl sm:text-3xl font-display font-extrabold text-white uppercase tracking-tight">
-              2. EXOPLANET EXPLORER
+              EXOPLANET EXPLORER
             </h2>
             <p className="text-xs text-neutral-300 font-sans max-w-xl">
               Survey, filter, and inspect 520+ confirmed exoplanetary systems with empirical physical and orbital telemetry.

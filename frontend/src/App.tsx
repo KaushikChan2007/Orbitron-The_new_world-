@@ -44,6 +44,11 @@ export function App() {
     }
   };
 
+  // Ensure each tab begins from the top at the header
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }, [currentView]);
+
   const initialPlanets = (defaultSnapshot.planets || []) as Exoplanet[];
   const [planets, setPlanets] = useState<Exoplanet[]>(initialPlanets);
   const [featuredPlanet, setFeaturedPlanet] = useState<Exoplanet>(() => {

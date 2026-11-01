@@ -110,7 +110,7 @@ export const Dossier: React.FC<DossierProps> = ({
         <div className="flex items-center justify-between text-xs font-mono text-neutral-400 px-1">
           <span className="text-sm font-bold tracking-wider text-white uppercase flex items-center gap-2">
             <Layers className="w-4 h-4 text-white" />
-            <span>3. Habitability Analysis</span>
+            <span>Habitability Analysis</span>
           </span>
           <span className="text-[11px]">Mikko Tuomi et al. (2013) & Kopparapu et al. (2013)</span>
         </div>
@@ -124,7 +124,7 @@ export const Dossier: React.FC<DossierProps> = ({
           </div>
           <div>
             <div className="text-[10px] text-neutral-400 uppercase tracking-wider">
-              3. HABITABILITY ANALYSIS & CLOUD FEEDBACK
+              HABITABILITY ANALYSIS & CLOUD FEEDBACK
             </div>
             <h1 className="text-xl font-bold text-white flex items-center gap-2">
               <span>{planet.pl_name}</span>

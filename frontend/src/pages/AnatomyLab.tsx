@@ -295,12 +295,12 @@ export const AnatomyLab: React.FC<AnatomyLabProps> = ({
           {/* Tab Selector Buttons */}
           <div className="flex flex-wrap items-center gap-1.5 p-1.5 rounded-2xl bg-white/[0.03] border border-white/10 font-mono">
             {[
-              { id: 'dna', label: '1. DNA Damage' },
-              { id: 'cellular', label: '2. Cellular Foci' },
-              { id: 'immune', label: '3. Immune System' },
-              { id: 'nervous', label: '4. Nervous System' },
-              { id: 'body', label: '5. Anatomical Hotspots' },
-              { id: 'papers', label: '6. Research Papers' }
+              { id: 'dna', label: 'DNA Damage' },
+              { id: 'cellular', label: 'Cellular Foci' },
+              { id: 'immune', label: 'Immune System' },
+              { id: 'nervous', label: 'Nervous System' },
+              { id: 'body', label: 'Anatomical Hotspots' },
+              { id: 'papers', label: 'Research Papers' }
             ].map((tab) => (
               <button
                 key={tab.id}

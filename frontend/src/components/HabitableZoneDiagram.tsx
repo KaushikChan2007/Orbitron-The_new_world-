@@ -105,7 +105,7 @@ export const HabitableZoneDiagram: React.FC<HabitableZoneDiagramProps> = ({ plan
         <div className="space-y-2">
           <div className="flex justify-between items-center text-[11px]">
             <span className="font-bold text-white uppercase tracking-wider">
-              1. Solar System Baseline (Sol / G2V, 5778 K)
+              Solar System Baseline (Sol / G2V, 5778 K)
             </span>
             <span className="text-neutral-400 text-[10px]">
               Earth: 1.00 AU • Mars: 1.52 AU
@@ -199,7 +199,7 @@ export const HabitableZoneDiagram: React.FC<HabitableZoneDiagramProps> = ({ plan
         <div className="space-y-2">
           <div className="flex justify-between items-center text-[11px]">
             <span className="font-bold text-white uppercase tracking-wider">
-              2. Target System: {planet.hostname} ({planet.st_teff ? `${planet.st_teff} K` : 'Spectral Class N/A'})
+              Target System: {planet.hostname} ({planet.st_teff ? `${planet.st_teff} K` : 'Spectral Class N/A'})
             </span>
             <span className="text-white text-[10px] font-bold">
               {planet.pl_name}: {semiMajorAu ? `${semiMajorAu} AU` : 'Semi-major Axis Derived from Insolation'}
